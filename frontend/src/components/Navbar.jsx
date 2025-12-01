@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="bg-gray-800 text-white p-4">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold">ClothApp</Link>
+          <Link to="/" className="text-2xl font-bold">Trendz</Link>
           
           <div className="hidden sm:flex gap-6 items-center">
             <Link to="/">Home</Link>
