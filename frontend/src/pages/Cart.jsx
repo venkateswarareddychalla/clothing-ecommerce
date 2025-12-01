@@ -10,10 +10,15 @@ const Cart = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const productIds = [...new Set(cart.map(item => user ? item.product?._id : item.product))];
+      const productIds = [...new Set(cart.map(item => {
+        if (user) {
+          return typeof item.product === 'string' ? item.product : item.product?._id;
+        }
+        return item.product;
+      }))];
       const productData = {};
       for (const id of productIds) {
-        if (id) {
+        if (id && typeof id === 'string') {
           try {
             const { data } = await axios.get(`/api/products/${id}`);
             productData[id] = data;
@@ -64,7 +69,7 @@ const Cart = () => {
                 <button onClick={() => updateQty(user ? item._id : item.product, Math.max(1, item.qty - 1))} className="bg-gray-300 px-3 py-1 rounded font-bold">-</button>
                 <span className="font-bold w-8 text-center">{item.qty}</span>
                 <button onClick={() => {
-                  const productId = user ? item.product?._id : item.product;
+                  const productId = user ? (typeof item.product === 'string' ? item.product : item.product?._id) : item.product;
                   const stock = products[productId]?.stock;
                   updateQty(user ? item._id : item.product, item.qty + 1, stock);
                 }} className="bg-gray-300 px-3 py-1 rounded font-bold">+</button>
