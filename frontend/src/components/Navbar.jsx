@@ -9,19 +9,19 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800 text-white p-4">
+    <nav className="bg-linear-to-r from-blue-600 to-indigo-700 text-white p-4 shadow-lg">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold">Trendz</Link>
+          <Link to="/" className="text-2xl font-bold tracking-wide">Trendz</Link>
           
-          <div className="hidden sm:flex gap-6 items-center">
+          <div className="hidden sm:flex gap-6 items-center font-medium">
             <Link to="/">Home</Link>
             <Link to="/products">Products</Link>
             <Link to="/cart">Cart ({cart.length})</Link>
             {user ? (
               <>
                 <span>Hi, {user.name}</span>
-                <button onClick={logout} className="bg-red-600 px-3 py-1 rounded cursor-pointer">Logout</button>
+                <button onClick={logout} className="bg-white text-blue-600 px-4 py-1.5 rounded-full font-semibold hover:bg-gray-100 transition">Logout</button>
               </>
             ) : (
               <Link to="/login">Login</Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
             {user ? (
               <div className='flex flex-row justify-between'>
                 <span className="py-2">Hi, {user.name}</span>
-                <button onClick={() => { logout(); setIsOpen(false); }} className="bg-red-600 px-2 py-2 rounded cursor-pointer text-left">Logout</button>
+                <button onClick={() => { logout(); setIsOpen(false); }} className="bg-white text-blue-600 px-4 py-2 rounded-full font-semibold">Logout</button>
               </div>
             ) : (
               <Link to="/login" onClick={() => setIsOpen(false)} className="block py-2">Login</Link>
